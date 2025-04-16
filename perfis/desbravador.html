@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perfil Desbravador </title>
+  <link rel="stylesheet" href="css/perfis.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body class="desbravador">
+  <div class="container desbravador">
+    <h1> Perfil Desbravador </h1>
+    <h1> O Visionário e Analítico </h1>
+
+    <img class="medalha-animada desbravador" src="img/MedalhaDesbravador_upscaled.png" alt="Medalha Desbravador">
+
+    <p>Caracteristicas Principais:</p>
+    <ul>
+      <li>São focados em visão estratégica e conhecimento.</li>
+      <li>Observadores, gostam de ver o todo e compreender o “porquê” das coisas.</li>
+      <li>Preferem dados e fatos antes de tomar decisões.</li>
+      <li>Valorizam a autonomia e a qualidade intelectual.</li>
+    </ul>
+    <p>Pontos Fortes:</p>
+    <ul>
+      <li>Pensamento crítico e lógico.</li>
+      <li>Capacidade de análise e planejamento.</li>
+      <li>Independência e foco em inovação.</li>
+      <li>Antecipam problemas e oportunidades com facilidade.</li>
+    </ul>
+    <p>Pontos de Atenção:</p>
+    <ul>
+      <li>Podem parecer frios ou distantes emocionalmente.</li>
+      <li>Tendem à análise excessiva (paralisia pela análise).</li>
+      <li>Dificuldade em lidar com erros próprios.</li>
+      <li>Podem ser perfeccionistas demais.</li>
+    </ul>
+    
+    <div class="chart-container">
+      <h2 class="chart-title">Seu Perfil de Personalidade</h2>
+      <canvas id="personalityChart"></canvas>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Recuperar os resultados do localStorage
+      const resultsData = localStorage.getItem('personalityResults');
+      
+      if (!resultsData) {
+        // Se não houver dados, redirecionar para a página inicial
+        alert('Nenhum resultado encontrado. Por favor, faça o teste primeiro.');
+        window.location.href = '../index.html';
+        return;
+      }
+      
+      const results = JSON.parse(resultsData);
+      const percentages = results.percentages;
+      
+      console.log("Dados recuperados:", results);
+      
+      // Criar o gráfico
+      const ctx = document.getElementById('personalityChart').getContext('2d');
+      const chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['Navegador', 'Comandante', 'Explorador', 'Desbravador'],
+          datasets: [{
+            label: 'Porcentagem',
+            data: [
+              percentages.navegador, 
+              percentages.comandante, 
+              percentages.explorador, 
+              percentages.desbravador
+            ],
+            backgroundColor: [
+              '#00CFFF', // Navegador
+              '#FF2E72', // Comandante
+              '#A636FF', // Explorador
+              '#ffa31a'  // Desbravador
+            ],
+            borderColor: [
+              '#00CFFF',
+              '#FF2E72',
+              '#A636FF',
+              '#ffa31a'
+            ],
+            borderWidth: 2,
+            borderRadius: 8,
+            maxBarThickness: 60
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          layout: {
+            padding: {
+              left: 0,
+              right: 0,
+              top: 0,
+              bottom: 45
+            }
+          },
+          plugins: {
+            legend: {
+              display: false
+            },
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return context.parsed.y + '%';
+                }
+              }
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 100,
+              grid: {
+                color: 'rgba(255, 255, 255, 0.1)',
+                drawBorder: false,
+                drawTicks: false
+              },
+              border: {
+                display: false
+              },
+              ticks: {
+                callback: function(value) {
+                  return value + '%';
+                },
+                color: '#ffffff',
+                font: {
+                  size: 11
+                },
+                padding: 5
+              }
+            },
+            x: {
+              grid: {
+                display: false,
+                drawBorder: false,
+                drawTicks: false
+              },
+              border: {
+                display: false
+              },
+              ticks: {
+                color: '#ffffff',
+                font: {
+                  size: 11
+                },
+                padding: 5
+              }
+            }
+          },
+          barPercentage: 0.6,
+          categoryPercentage: 0.7,
+        }
+      });
+    });
+  </script>
+</body>
+</html>

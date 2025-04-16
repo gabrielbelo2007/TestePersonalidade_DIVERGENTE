@@ -1,0 +1,223 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
+
+body {
+  font-family: 'Orbitron', sans-serif;
+  color: #d7ff2a;
+  margin: 0;
+  padding: 0;
+}
+
+body.navegador{
+  background-color: #00cfff;
+}
+
+body.desbravador{
+  background-color: #ffa31a;
+}
+
+body.explorador {
+  background-color: #A636FF;
+}
+
+body.comandante {
+  background-color:#ff2e74;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 40px;
+  background-color: #000;
+  border-bottom: 3px solid currentColor;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.7);
+}
+
+.header h1 {
+  font-size: 2rem;
+  margin: 0;
+  letter-spacing: 2px;
+}
+
+.container {
+  max-width: 800px;
+  width: 90%;
+  margin: 20px auto;
+  background-color: #1a1a1a;
+  padding: 20px;
+  border-radius: 20px;
+  position: relative;
+  z-index: 2 relative;
+  z-index: 2;
+}
+
+.container.comandante {
+  color: #ff2e72;
+  box-shadow: 0 0 20px #ff2e7233;
+  border: 2px solid #ff2e72;
+}
+
+.container.explorador {
+  color: #a636ff;
+  box-shadow: 0 0 20px #a636ff33;
+  border: 2px solid #a636ff;
+}
+
+.container.navegador {
+  color: #00cfff;
+  box-shadow: 0 0 20px #00cfff33;
+  border: 2px solid #00cfff;
+}
+
+.container.desbravador {
+  color: #ffa31a;
+  box-shadow: 0 0 20px #ffa31a33;
+  border: 2px solid #ffa31a;
+}
+
+h1 {
+  font-size: 1.8rem;
+  margin-bottom: 30px;
+  text-align: center;
+  color: currentColor;
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  color: currentColor;
+}
+
+.chart-container {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #222;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.5);
+  width: calc(100% - 40px);
+  height: 300px;
+  position: relative;
+}
+
+.chart-title {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #fff;
+  font-size: 1.3rem;
+}
+  
+  .medalha-animada {
+    width: 300px;
+    height: auto;
+    display: block;
+    margin: 10px auto;
+    /* transform: scale(1.5); */
+    animation: flutuar 3s ease-in-out infinite,
+               pulsar 2.5s ease-in-out infinite,
+               brilhar 2s ease-in-out infinite;
+  }
+  
+  /* Perfil → Cor do brilho */
+  .comandante .medalha-animada {
+    --brilho-cor: #ff2e72;
+  }
+  
+  .explorador .medalha-animada {
+    --brilho-cor: #a636ff;
+  }
+  
+  .navegador .medalha-animada {
+    --brilho-cor: #00cfff;
+  }
+  
+  .desbravador .medalha-animada {
+    --brilho-cor: #ffa31a;
+  }
+  
+  @keyframes brilhar {
+    0%, 100% {
+      filter: drop-shadow(0 0 5px var(--brilho-cor, #ffffff66));
+    }
+    50% {
+      filter: drop-shadow(0 0 15px var(--brilho-cor, #ffffff));
+     filter: drop-shadow(0 0 15px var(--brilho-cor, #ffffff)); 
+    }
+  }
+  
+  @keyframes pulsar {
+    0%, 100% {
+      transform: scale(1.5);
+    }
+    50% {
+      transform: scale(1.6);
+    }
+  }
+
+  /* Responsividade */
+  @media screen and (max-width: 768px) {
+    .header {
+      padding: 15px 20px;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .header h1 {
+      font-size: 1.5rem;
+    }
+
+    .container {
+      width: 95%;
+      padding: 15px;
+      margin: 10px auto;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+
+    .medalha-animada {
+      width: 200px;
+    }
+
+    .chart-container {
+      padding: 10px;
+      margin-top: 20px;
+      height: 250px;
+    }
+
+    .chart-title {
+      font-size: 1.1rem;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .header h1 {
+      font-size: 1.2rem;
+    }
+
+    .container {
+      width: 100%;
+      padding: 10px;
+      margin: 5px auto;
+      border-radius: 10px;
+    }
+
+    h1 {
+      font-size: 1.3rem;
+    }
+
+    .medalha-animada {
+      width: 150px;
+    }
+
+    .chart-container {
+      height: 200px;
+    }
+
+    p {
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+  }  
